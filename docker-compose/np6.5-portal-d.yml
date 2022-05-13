@@ -1,13 +1,13 @@
 version: '3.5'
 services:
   portal-d:
-    image: btcag/btc-np-runtime:${BTC_NP_D_NETZPORTALVERS}
+    image: btcag/btc-np-runtime:6.5
     container_name: btc-np-d-portal
     restart: always
     volumes:
-      - ../netzportal${BTC_NP_D_NETZPORTALVERS}-d:/opt/simplifier/data
-    ports:
-      - 6080:8080
+      - ../netzportal-d:/opt/simplifier/data
+#    ports:
+#      - 6080:8080
     environment:
       - DB=mysql
       - MYSQL_HOST=btc-np-db
@@ -18,7 +18,7 @@ services:
       - PLUGINLIST=keyValueStorePlugin,pdfPlugin,captcha,contentRepoPlugin,jsonStore,${BTC_NP_D_PLUGINLIST}
       - VIRTUAL_HOST=127.0.0.1
     networks:
-      - private-network
+      - private-network-d
       - public-network
     depends_on:
       - db
@@ -30,6 +30,6 @@ services:
 #    volumes:
 #      - /var/run/docker.sock:/var/run/docker.sock      
 networks:
-  private-network: 
+  private-network-d:
     internal: true      
   public-network:
