@@ -15,7 +15,8 @@ services:
       - 9443:443
     networks:
       - public-network
-      - private-network
+      - private-network-d
+      - private-network-q
 #  watchtower:
 #    image: containrrr/watchtower
 #    container_name: btc-np-d-watch
@@ -24,6 +25,8 @@ services:
 #    volumes:
 #      - /var/run/docker.sock:/var/run/docker.sock      
 networks:
-  private-network: 
-    internal: true      
+  private-network-d: 
+    internal: true 
+  private-network-q: 
+    internal: true 
   public-network:
