@@ -1,0 +1,35 @@
+version: '3.5'
+services:
+  portal-q:
+    image: btcag/btc-np-runtime:${BTC_NP_Q_NETZPORTALVERS}
+    container_name: btc-np-q-portal
+    restart: always
+    volumes:
+      - ../netzportal${BTC_NP_D_NETZPORTALVERS}-q:/opt/simplifier/data
+    ports:
+      - 7080:8080
+    environment:
+      - DB=mysql
+      - MYSQL_HOST=btc-np-db
+      - MYSQL_PORT=3306
+      - MYSQL_USER=${BTC_NP_Q_DBUSER}
+      - MYSQL_PASSWORD=${BTC_NP_Q_DBPWD}
+      - MYSQL_DB=${BTC_NP_Q_DBNAME}
+      - PLUGINLIST=keyValueStorePlugin,pdfPlugin,captcha,contentRepoPlugin,jsonStore,${BTC_NP_Q_PLUGINLIST}
+      - VIRTUAL_HOST=127.0.0.1
+    networks:
+      - private-network
+      - public-network
+    depends_on:
+      - db
+#  watchtower:
+#    image: containrrr/watchtower
+#    container_name: btc-np-d-watch
+#    command: --cleanup --schedule "0 0 0 * * *"
+#    restart: unless-stopped
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock      
+networks:
+  private-network:
+    internal: true      
+  public-network:

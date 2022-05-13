@@ -1,0 +1,29 @@
+version: '3.5'
+services:
+  proxy:
+    image: nginx:1.21
+    restart: unless-stopped
+    container_name: btc-np-proxy
+    volumes:
+      - ../data/nginx/conf:/etc/nginx/conf.d/
+      - ../data/nginx/certs:/etc/nginx/certs/
+      - ../data/nginx/www:/usr/share/nginx/html/
+    ports:
+      - 8080:80
+      - 8443:443
+      - 9080:80
+      - 9443:443
+    networks:
+      - public-network
+      - private-network
+#  watchtower:
+#    image: containrrr/watchtower
+#    container_name: btc-np-d-watch
+#    command: --cleanup --schedule "0 0 0 * * *"
+#    restart: unless-stopped
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock      
+networks:
+  private-network: 
+    internal: true      
+  public-network:
