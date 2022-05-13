@@ -1,3 +1,14 @@
+## Before you start
+Think about some requirements and solution related topics
+
+DRAFT:
+* Sizing (CPU,MEM,HDD)
+* Staging (3 stages: DEV/QA/PRD vs 2 stages NON-PROD/PRD)
+* Proxy for external access
+* Certificate handling
+* external DB/integrated DB (Docker) 
+
+
 ### Prepare environment
 All below commands need to be executed with root permissions!
 1. Install docker engine on host
@@ -111,12 +122,3 @@ to be replaced by script (in progress!)
    ```
 
 
-## Before you start
-Think about some requirements and solution related topics
-
-DRAFT:
-* Sizing (CPU,MEM,HDD)
-* Staging (3 stages: DEV/QA/PRD vs 2 stages NON-PROD/PRD)
-* Proxy for external access
-* Certificate handling
-* external DB/integrated DB (Docker) 
