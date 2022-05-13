@@ -1,11 +1,11 @@
 version: '3.5'
 services:
   db:
-    image: mysql:${BTC_NP_MYSQLVERS}
+    image: mysql:8.0
     container_name: btc-np-db
     volumes:
-      - ../mysql${BTC_NP_MYSQLVERS}:/var/lib/mysql
-      - ../mysql_init:/docker-entrypoint-initdb.d
+      - ../data/mysql:/var/lib/mysql
+      - ../data/mysql_init:/docker-entrypoint-initdb.d
     restart: always
     command: --max_allowed_packet=1073741824 --wait_timeout=28800 --sql-mode="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION" --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password
     environment:
