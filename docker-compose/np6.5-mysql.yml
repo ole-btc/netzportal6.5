@@ -13,8 +13,11 @@ services:
     cap_add:
       - SYS_NICE
     networks:
-      - private-network
+      - private-network-d
+      - private-network-q
 networks:
-  private-network: 
-    internal: true      
+  private-network-d: 
+    internal: true
+  private-network-q: 
+    internal: true 
   public-network:
